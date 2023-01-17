@@ -3,11 +3,9 @@ import CategoryPreview from '../../components/category-preview/category-preview.
 import { CategoriesContext } from '../../contexts/categories.contex';
 
 
-
-
 const CategoriesPreview = () => {
   const { categoriesMap } = useContext(CategoriesContext);
-  
+
   return (
     <Fragment>
       {Object.keys(categoriesMap).map((title) => {
