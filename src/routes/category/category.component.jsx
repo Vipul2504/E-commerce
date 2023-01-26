@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductCard from '../../components/product-card/product-card.component';
-
+import Spinner from '../../components/spinner/spinner.component';
 import { CategoryContainer, Title } from './category.styles';
 import { selectCategoriesIsLoading, selectCategoriesMap } from '../../store/categories/category.selector';
 import { useSelector } from 'react-redux';
