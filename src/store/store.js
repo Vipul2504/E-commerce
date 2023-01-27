@@ -24,4 +24,4 @@ const persistedReducer  = persistReducer(persistConfig, rootReducer)
 
 export const store = createStore(persistedReducer, undefined, composedEnhancers)
 
-export const persistr = persistStore(store)
+export const persistore = persistStore(store)
