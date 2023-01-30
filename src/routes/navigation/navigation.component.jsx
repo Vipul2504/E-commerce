@@ -19,7 +19,7 @@ const Navigation = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
   const isCartOpen = useSelector(selectIsCartOpen);
-  const signOutUSer = dispatch(signOutStart)
+  const signOutUser = () => dispatch(signOutStart())
   return (
     <>
       <NavigationContainer>
@@ -30,7 +30,7 @@ const Navigation = () => {
           <NavLink to='/shop'>SHOP</NavLink>
 
           {currentUser ? (
-            <NavLink as='span' onClick={signOutUSer}>
+            <NavLink as='span' onClick={signOutUser}>
               SIGN OUT
             </NavLink>
           ) : (

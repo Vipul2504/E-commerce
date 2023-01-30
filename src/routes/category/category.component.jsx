@@ -9,8 +9,8 @@ import { useSelector } from 'react-redux';
 
 const Category = () => {
   const { category } = useParams();
-  const categoriesMap = useSelector(selectCategoriesMap)
-  const isLoading = useSelector(selectCategoriesIsLoading)
+  const categoriesMap = useSelector(selectCategoriesMap);
+  const isLoading = useSelector(selectCategoriesIsLoading);
   const [products, setProducts] = useState(categoriesMap[category]);
 
   useEffect(() => {
@@ -20,17 +20,16 @@ const Category = () => {
   return (
     <>
       <Title>{category.toUpperCase()}</Title>
-      {
-        isLoading ? (<Spinner />) : (
-          <CategoryContainer>
-            {products &&
-              products.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-          </CategoryContainer>
-        )
-      }
-
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <CategoryContainer>
+          {products &&
+            products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+        </CategoryContainer>
+      )}
     </>
   );
 };
