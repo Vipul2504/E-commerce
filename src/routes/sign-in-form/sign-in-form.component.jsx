@@ -5,7 +5,6 @@ import Button , { BUTTON_TYPE_CLASSES } from "../../components/button/button.com
 import { useDispatch } from "react-redux";
 import { emailSignInStart, googleSignInStart } from "../../store/user/user.action";
 
-
 const defaultFormFields = {
   email: '',
   password: '',
@@ -21,26 +20,17 @@ const SignInForm = () => {
   };
 
   const signInWithGoogle = async () => {
-    dispatch(googleSignInStart())
+    dispatch(googleSignInStart());
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      dispatch(emailSignInStart(email, password))
+      dispatch(emailSignInStart(email, password));
       resetFormFields();
     } catch (error) {
-      switch (error.code) {
-        case 'auth/wrong-password':
-          alert('incorrect password for email');
-          break;
-        case 'auth/user-not-found':
-          alert('no user associated with this email');
-          break;
-        default:
-          console.log(error);
-      }
+      console.log('user sign in failed', error);
     }
   };
 
