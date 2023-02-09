@@ -1,5 +1,15 @@
+import Stripe from "stripe";
+
 require("dotenv").config();
-const stripe = require('stripe')('sk_test_51MVwT9SCOnxN1vxupo2xyzks3rnjfGwXpqTBjoYIjoowo3fs3FUZke3qXV7Zfh95zc5YXaqgRj8hyNCkMMljr5EY00sK2gyc0y');
+const stripeKey = process.env.STRIPE_SECRET_KEY;
+console.log(process.env.STRIPE_SECRET_KEY);
+
+if (!stripeKey) {
+  throw new Error("Missing Stripe API key");
+}
+
+const stripe = new Stripe(stripeKey);
+
 
 export async function handler(event) {
   try {
