@@ -1,13 +1,13 @@
 import {
   CATEGORIES_ACTION_TYPES,
   Category,
-  categoryItem,
 } from "./category.types";
 
 import {
   createAction,
   Action,
   ActionWithPayload,
+  withMatchers
 } from "../../utils/reducer/reducer.utils";
 
 export type FetchCategoriesStart =
@@ -23,18 +23,16 @@ export type FetchCategoriesFailed = ActionWithPayload<
   Error
 >;
 
-export type CreateAction = FetchCategoriesFailed | FetchCategoriesStart | FetchCategoriesSuccess;
+export const fetchCategoriesStart = withMatchers((): FetchCategoriesStart =>
+  createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START));
 
-export const fetchCategoriesStart = (): FetchCategoriesStart =>
-  createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START);
-
-export const fetchCategoriesSuccess = (
+export const fetchCategoriesSuccess = withMatchers((
   categoriesArray: Category[]
 ): FetchCategoriesSuccess =>
   createAction(
     CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_SUCCESS,
     categoriesArray
-  );
+  ));
 
-export const fetchCategoriesFailed = (error: Error): FetchCategoriesFailed =>
-  createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error);
+export const fetchCategoriesFailed = withMatchers((error: Error): FetchCategoriesFailed =>
+  createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error));
