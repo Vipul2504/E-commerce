@@ -1,32 +1,26 @@
+import { FC, memo } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { CartItemContainer, ItemDetails } from './cart-icon.styles';
 
-import {
-  selectCartCount,
-  selectIsCartOpen,
-} from '../../store/cart/cart.selector';
-import { setIsCartOpen } from '../../store/cart/cart.action';
+import { CartItem as TCartItem } from '../../store/cart/cart.types';
 
-import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
-
-
-import './cart-icon.styles';
-import { CartIconContainer, ItemCount } from './cart-icon.styles';
-
-const CartIcon = () => {
-  const dispatch = useDispatch();
-  const isCartOpen = useSelector(selectIsCartOpen);
-  const cartCount = useSelector(selectCartCount);
-
-  const toggleIsCartOpen = () => dispatch(setIsCartOpen(!isCartOpen));
-
-  return (
-    <CartIconContainer onClick={toggleIsCartOpen}>
-      <ShoppingIcon className='shopping-icon' />
-      <ItemCount>{cartCount}</ItemCount>
-    </CartIconContainer>
-  );
+type CartItemProps = {
+  cartItem: TCartItem;
 };
 
-export default CartIcon;
+const CartItem: FC<CartItemProps> = memo(({ cartItem }) => {
+  const { name, imageUrl, price, quantity } = cartItem;
+  return (
+    <CartItemContainer>
+      <img src={imageUrl} alt={`${name}`} />
+      <ItemDetails>
+        <span>{name}</span>
+        <span>
+          {quantity} x ${price}
+        </span>
+      </ItemDetails>
+    </CartItemContainer>
+  );
+});
 
+export default CartItem;
