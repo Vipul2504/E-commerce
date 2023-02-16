@@ -1,23 +1,23 @@
-
 import styled from 'styled-components';
 
-export const CartIconContainer = styled.div`
-  width: 45px;
-  height: 45px;
-  position: relative;
+export const CartItemContainer = styled.div`
+  width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  svg {
-    width: 24px;
-    height: 24px;
+  height: 80px;
+  margin-bottom: 15px;
+  img {
+    width: 30%;
   }
 `;
 
-export const ItemCount = styled.span`
-  position: absolute;
-  font-size: 10px;
-  font-weight: bold;
-  bottom: 12px;
+export const ItemDetails = styled.div`
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 10px 20px;
+  span {
+    font-size: 16px;
+  }
 `;
